@@ -1,0 +1,492 @@
+{
+  "uuid": "1267f82e-037a-4e7b-816a-077edc208cc0",
+  "lastMigration": 33,
+  "name": "MMEM Integration",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "0.0.0.0",
+  "folders": [
+    {
+      "uuid": "0773cd1b-dcf7-48f4-b543-22545e1ae65c",
+      "name": "Invoices",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "7e6cdd9c-e9a0-4430-87ab-a6a248920928"
+        },
+        {
+          "type": "route",
+          "uuid": "03b5d788-11b4-48cf-9bad-cb753f82bc61"
+        },
+        {
+          "type": "route",
+          "uuid": "6b5d5ece-1190-4a38-a018-00730efde6b8"
+        }
+      ]
+    },
+    {
+      "uuid": "bd5ac2d1-dde9-458d-b292-53e05d76f80f",
+      "name": "Statements",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "6266028f-b1d0-4570-a88c-4a2e40b0e6de"
+        },
+        {
+          "type": "route",
+          "uuid": "90604141-be2e-4950-b783-f1bbe6ce01a5"
+        }
+      ]
+    },
+    {
+      "uuid": "44673501-faf2-4ee9-a92e-dcac17ca9ae5",
+      "name": "Prices",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "2b2560e1-5222-4b20-b82c-fe43c5f6dc08"
+        }
+      ]
+    },
+    {
+      "uuid": "1ee68eb2-200c-4b41-be7a-72a3184eb2e6",
+      "name": "Metrics",
+      "children": []
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "7e6cdd9c-e9a0-4430-87ab-a6a248920928",
+      "type": "http",
+      "documentation": "Perform range response for Unibis Invoices",
+      "method": "post",
+      "endpoint": "v1/invoice/range",
+      "responses": [
+        {
+          "uuid": "ace8ccd6-7e85-4bbe-b156-3c9f516f3bb9",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Emulate range response for Unibis invoices",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "if00",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "data_type",
+              "value": "2",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "b63c5e2b-386c-47e9-af9d-7e473cba8b35",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Emulate range response for Unibis outstanding invoices",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "if00",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "data_type",
+              "value": "2",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "data",
+              "value": "pending",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "7f581d5e-9205-4b8f-833c-4eb480646577",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Emulate single response for Unibis Invoices",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "nbxt",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "data_type",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "data",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "6266028f-b1d0-4570-a88c-4a2e40b0e6de",
+      "type": "http",
+      "documentation": "Perform range response for Unibis Statements",
+      "method": "post",
+      "endpoint": "v1/statement/range",
+      "responses": [
+        {
+          "uuid": "5da8212c-e2d7-4553-a1c0-4f320a23e008",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Emulate range response for Unibis statements",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "x50i",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "03b5d788-11b4-48cf-9bad-cb753f82bc61",
+      "type": "http",
+      "documentation": "Perform detail response for Unibis Invoices",
+      "method": "post",
+      "endpoint": "v1/invoice/detail",
+      "responses": [
+        {
+          "uuid": "5f399d25-b52d-489b-82f9-38f75a15ba7a",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Emulate detail response for Unibis invoices",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "vv0q",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "type",
+              "value": "3",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "invoice",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "invsuff",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "customer",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "6b5d5ece-1190-4a38-a018-00730efde6b8",
+      "type": "http",
+      "documentation": "Perform list invoice response for Unibis Invoices",
+      "method": "post",
+      "endpoint": "v1/invoice/list",
+      "responses": [
+        {
+          "uuid": "7e36fc61-3a07-4901-bc30-fd0e40626087",
+          "body": "\"Document Type\",\"Customer Number\",\"Document Number\",\"Document Date/Credit Date\",\"Customer Job Number/Apply to Invoice\",\"Customer Order Number\",\"Buyer ID/Credited By\",\"Service Centre\",\"Product Code\",\"Product Description\",\"Quantity Ordered\",\"Qty B/Ordered/Qty Credited\",\"Quantity Shipped/Quantity Returned\",\"UOM\",\"Unit Price\",\"Price Per\",\"Line Value Excl. GST\",\"Line GST Amount\",\"Line Value Incl. GST\",\"Total Document Amount Excl GST\",\"Total Document GST\",\"Total Document Amount Incl GST\"\n\"Invoice\",\"120226\",\"999471-900\",\"02/10/2019\",\"Not Quoted\",\"Not Quoted\",\"\",\"900\",\"CLI2025WE\",\"GPO Standard 2G Horiz 10A 250V White\",\"3\",\"0\",\"3\",\"EA\",\"12.3\",\"1\",\"36.9\",\"3.69\",\"40.59\",\"36.9\",\"3.69\",\"40.59\"\n\"Adj Note\",\"120226\",\"999871-900\",\"02/10/2019\",\"999825-900\",\"450010291\",\"sdesk\",\"900\",\"CBL2.5/10CECONTROL\",\"Control Unarmoured 10C+E 2.5mm PVC/PVC 18.1\",\"300\",\"300\",\"300\",\"MTR\",\"1397.165\",\"100\",\"4191.49\",\"419.15\",\"4610.64\",\"4191.49\",\"419.15\",\"4610.64\"",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Emulate raw list response for Unibis Invoices",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "90604141-be2e-4950-b783-f1bbe6ce01a5",
+      "type": "http",
+      "documentation": "Perform detail response for Unibis Statements",
+      "method": "post",
+      "endpoint": "v1/statement/detail",
+      "responses": [
+        {
+          "uuid": "47198c64-d23b-4908-8bb7-672cb547d5ec",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Emulate detail response for Unibis statements",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "nb1l",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "period",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "customer",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "2b2560e1-5222-4b20-b82c-fe43c5f6dc08",
+      "type": "http",
+      "documentation": "Unibis Price Service",
+      "method": "post",
+      "endpoint": "mageWS/wsa1",
+      "responses": [
+        {
+          "uuid": "26d34e7d-436d-4229-aa98-70180a29af77",
+          "body": "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n   <SOAP-ENV:Body>\n      <getWebPricingResponse xmlns=\"urn:mageServices:mageServices\">\n         <result xsi:nil=\"true\"/>\n         <wsOutOk>true</wsOutOk>\n         <wsOutJson>{{data '62aj'}}</wsOutJson>\n      </getWebPricingResponse>\n   </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Emulate get price service of UNIBIS",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/xml; charset=UTF-8"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Content-Type",
+              "value": "text/xml;charset=utf-8",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "header",
+              "modifier": "Accept-Encoding",
+              "value": "gzip,deflate",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "0773cd1b-dcf7-48f4-b543-22545e1ae65c"
+    },
+    {
+      "type": "folder",
+      "uuid": "bd5ac2d1-dde9-458d-b292-53e05d76f80f"
+    },
+    {
+      "type": "folder",
+      "uuid": "44673501-faf2-4ee9-a92e-dcac17ca9ae5"
+    },
+    {
+      "type": "folder",
+      "uuid": "1ee68eb2-200c-4b41-be7a-72a3184eb2e6"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "416a7bb3-1b07-4082-8dec-6a3b52172f5b",
+      "id": "if00",
+      "name": "Invoices",
+      "documentation": "Create 50 random invoices of MMEM",
+      "value": "{\n  \"count\": 50,\n  \"data\": [\n    {{#repeat 50}}\n    {\n      {{#if (bodyRaw 'data')}}\n      \"amount\": \"{{ faker 'finance.amount' }}\",\n      \"balance\": \"{{ faker 'finance.amount' }}\",\n      {{/if}}\n      \"buyer\": \"{{ faker 'company.name' }}\",\n      \"contact\": \"{{ faker 'person.firstName' }} {{ faker 'person.lastName' }}\",\n      \"date\": \"{{ dateFormat (faker 'date.past') 'dd/MM/yy' }}\",\n      \"invoice\": \"{{ faker 'finance.pin' length=6 }}-{{ faker 'finance.creditCardCVV' }}\",\n      \"job\": \"{{ faker 'hacker.abbreviation' }}-{{ faker 'finance.routingNumber' }}\",\n      \"po\": \"{{ faker 'finance.accountNumber' length=10 }}\",\n      \"type\": \"3\"\n    }\n    {{/repeat}}\n  ]\n}"
+    },
+    {
+      "uuid": "2a2a2069-230e-4120-81c8-c55b643f9a6a",
+      "id": "nbxt",
+      "name": "Single Invoice",
+      "documentation": "Create 1 random invoice of MMEM",
+      "value": "{\n  \"count\": 1,\n  \"data\": [\n    {\n      \"buyer\": \"{{ faker 'company.name' }}\",\n      \"contact\": \"{{ faker 'person.firstName' }} {{ faker 'person.lastName' }}\",\n      \"date\": \"{{ dateFormat (faker 'date.past') 'dd/MM/yy' }}\",\n      \"invoice\": \"{{ body 'data' }}\",\n      \"job\": \"{{ faker 'hacker.abbreviation' }}-{{ faker 'finance.routingNumber' }}\",\n      \"po\": \"{{ faker 'finance.accountNumber' length=10 }}\",\n      \"type\": \"3\"\n    }\n  ]\n}"
+    },
+    {
+      "uuid": "660ffd17-3f8b-407b-95d8-1bb49156eda6",
+      "id": "vv0q",
+      "name": "Invoice Detail",
+      "documentation": "Create invoice detail response",
+      "value": "{\n  \"header\": {\n    \"whouse\": \"900\",\n    \"customer\": \"{{body 'customer'}}\",\n    \"invoice\": \"{{body 'invoice'}}\",\n    \"suff\": \"{{body 'invsuff'}}\",\n    \"apply\": \"0\",\n    \"applysf\": \"0\",\n    \"hdtype\": \"{{body 'type'}}\",\n    \"crdby\": \"sdesk\",\n    \"crd_reason\": \"\",\n    \"crd_inv_date\": \"\",\n    \"cust_po\": \"Not Quoted\",\n    \"ship_addr1\": \"Test Account\",\n    \"ship_addr2\": \"P.O Box 123\",\n    \"ship_addr3\": \"\",\n    \"ship_addr4\": \"Smith Field NSW  2147\",\n    \"del_addr1\": \"Fiona's account\",\n    \"del_addr2\": \"123 Smith Street\",\n    \"del_addr3\": \"\",\n    \"del_addr4\": \"Smithfield NSW 2147\",\n    \"spec_inst1\": \"\",\n    \"spec_inst2\": \"\",\n    \"spec_inst3\": \"\",\n    \"spec_inst4\": \"\",\n    \"addon_txt1\": \"Freight\",\n    \"addon_txt2\": \"IBT Transfer Fee\",\n    \"addon_txt3\": \"CreditCard Surcharge\",\n    \"addon_txt4\": \"Cutting Fee\",\n    \"addon_txt5\": \"Lookitup Fee\",\n    \"addon_txt6\": \"Lookitup Subscipt\",\n    \"addon_txt7\": \"5 cent rounding\",\n    \"addon_txt8\": \"Restocking fee\",\n    \"addon_aamt1\": \"0\",\n    \"addon_aamt2\": \"0\",\n    \"addon_aamt3\": \"0\",\n    \"addon_aamt4\": \"0\",\n    \"addon_aamt5\": \"0\",\n    \"addon_aamt6\": \"0\",\n    \"addon_aamt7\": \"0\",\n    \"addon_aamt8\": \"0\",\n    \"addon_atamt1\": \"0\",\n    \"addon_atamt2\": \"0\",\n    \"addon_atamt3\": \"0\",\n    \"addon_atamt4\": \"0\",\n    \"addon_atamt5\": \"0\",\n    \"addon_atamt6\": \"0\",\n    \"addon_atamt7\": \"0\",\n    \"addon_atamt8\": \"0\",\n    \"order_tax\": \"3.69\",\n    \"total_inc_tax\": \"40.59\",\n    \"total_ex_tax\": \"36.9\",\n    \"contact\": \"\",\n    \"contract\": \"90000693\",\n    \"inv_date\": \"02/10/19\",\n    \"ord_date\": \"02/10/19\",\n    \"bill_to\": \"120226\",\n    \"inv_type\": \"A\",\n    \"job_no\": \"Not Quoted\",\n    \"order\": \"7287\",\n    \"salesperson\": \"sdesk\",\n    \"buyer_name\": \"\",\n    \"bpay_ref\": \"2201202260\",\n    \"site_name\": \"National Office\",\n    \"site_add1\": \"MM Electrical Merchandising            M\",\n    \"site_add2\": \"19-21 Loyalty Road\",\n    \"site_add3\": \"\",\n    \"site_add4\": \"NORTH ROCKS NSW 2151\",\n    \"site_ph1\": \"02 8839 9000\",\n    \"site_ph2\": \"02 8839 9000\",\n    \"site_logotype\": \"M\",\n    \"header-text\": []\n  },\n  \"lines\": [\n    {\n      \"order\": \"7287\",\n      \"line\": \"5\",\n      \"product\": \"CLI2025WE\",\n      \"custproduct\": \"9311554042387\",\n      \"desc1\": \"GPO Standard 2G Horiz 10A\",\n      \"desc2\": \"250V White\",\n      \"ship_qty\": \"3\",\n      \"stock_uom\": \"EA\",\n      \"disc_perc\": \"0\",\n      \"returned_qty\": \"0\",\n      \"credit_qty\": \"3\",\n      \"sales_amt\": \"36.9\",\n      \"order_amt\": \"40.59\",\n      \"order_qty\": \"3\",\n      \"bo_qty\": \"0\",\n      \"cust_prod\": \"2025white\",\n      \"uom_conv\": \"1\",\n      \"tot_ex\": \"36.9\",\n      \"unit_price\": \"12.3\",\n      \"unit_price1\": \"12.3\",\n      \"linetext\": []\n    }\n  ]\n}"
+    },
+    {
+      "uuid": "2171a80c-8646-4e06-9f73-c1e4861a01af",
+      "id": "x50i",
+      "name": "Statements",
+      "documentation": "Create 20 random statements of MMEM",
+      "value": "[\n  {{#repeat 20}}\n    {\n      \"period\": \"{{ dateFormat (faker 'date.past') 'MMMM yyyy' }}\"\n    }\n  {{/repeat}}\n]"
+    },
+    {
+      "uuid": "3c0a66ec-9228-4a24-a0ae-f00229c6b1fc",
+      "id": "nb1l",
+      "name": "Statement Detail",
+      "documentation": "Create statement detail response",
+      "value": "{\n  \"header\": {\n    \"accountcode\": \"{{body 'customer'}}\",\n    \"address1\": \"Goldin Energy\",\n    \"address2\": \"Goldin Energy\",\n    \"address3\": \"P O Box 921\",\n    \"address4\": \"AYR\",\n    \"address5\": \"QLD    4807\",\n    \"billercode\": \"564583\",\n    \"company1\": \"Regional Office\",\n    \"company2\": \"Email Q1.credit@mmem.com.au\",\n    \"company3\": \"\",\n    \"company4\": \"PO BOX 522, Garbutt East QLD 4814\",\n    \"company5\": \"Ph: 07 4759 6203  Fax: 07 4775 7135\",\n    \"cust\": \"Goldin Energy\",\n    \"date\": \"31/05/24\",\n    \"email\": \"Email:\",\n    \"logo\": \"G\",\n    \"payto1\": \"Regional Office\",\n    \"payto2\": \"Email Q1.credit@mmem.com.au\",\n    \"payto3\": \"\",\n    \"payto4\": \"PO BOX 522, Garbutt East QLD 4814\",\n    \"payto5\": \"Ph: 07 4759 6203  Fax: 07 4775 7135\",\n    \"periodend\": \"31/05/24\",\n    \"reference\": \"1101672879\",\n    \"rgncode\": \"RQ1\",\n    \"whouse\": \"190\"\n  },\n  \"lines\": [\n    {\n      \"amount\": \"977.90\",\n      \"comments\": \"\",\n      \"credits\": \"\",\n      \"dateinv\": \"13/05/24\",\n      \"debits\": \"977.90\",\n      \"outstanding\": \"\",\n      \"outstandingamt\": \"\",\n      \"payments\": \"\",\n      \"tranno\": \"127270-190\",\n      \"transactionno\": \"127270-190\",\n      \"trantype\": \"INV\",\n      \"unpaidamount\": \"977.90\",\n      \"yourref\": \"SOLAREDGE\"\n    },\n    {\n      \"amount\": \"726.00\",\n      \"comments\": \"\",\n      \"credits\": \"\",\n      \"dateinv\": \"16/05/24\",\n      \"debits\": \"726.00\",\n      \"outstanding\": \"\",\n      \"outstandingamt\": \"\",\n      \"payments\": \"\",\n      \"tranno\": \"127340-190\",\n      \"transactionno\": \"127340-190\",\n      \"trantype\": \"INV\",\n      \"unpaidamount\": \"726.00\",\n      \"yourref\": \"NAOMI\"\n    },\n    {\n      \"amount\": \"\",\n      \"comments\": \"\",\n      \"credits\": \"\",\n      \"dateinv\": \"\",\n      \"debits\": \"\",\n      \"outstanding\": \"Outstanding for: May'24\",\n      \"outstandingamt\": \"1703.90\",\n      \"payments\": \"\",\n      \"tranno\": \"\",\n      \"transactionno\": \"\",\n      \"trantype\": \"MEND\",\n      \"unpaidamount\": \"\"\n    }\n  ],\n  \"payments\": [\n    {\n      \"dateinv\": \"28/05/24\",\n      \"debits\": \"-566.5\",\n      \"transactionno\": \"476661-000\",\n      \"trantype\": \"SUM\"\n    }\n  ],\n  \"summary\": [\n    \"Thank you for the following payment/s received this\",\n    \"month. Prior months invoices that are now fully paid\",\n    \"have now been cleared from your account\"\n  ],\n  \"totals\": {\n    \"aged30\": \"0\",\n    \"aged60\": \"0\",\n    \"aged90\": \"0\",\n    \"aged90p\": \"0\",\n    \"agedcurrent\": \"1703.9\",\n    \"agedtotal\": \"1703.9\",\n    \"current\": \"CURRENT\",\n    \"current$\": \"$1703.9\",\n    \"nowdue\": \"NOW DUE\",\n    \"overdue\": \"OVERDUE\",\n    \"overduefooter\": \"$0.00\",\n    \"paymentmade\": \"PAYMENT MADE\",\n    \"s-comments\": \"We have updated our standard terms of sale. These are available at    www.mmem.com.au/terms-of-sale/                                                                                                              For any queries, please contact your local credit team. *** Please send remittance advices to: Q1.CREDIT@MMEM.COM.AU          *** Want to automatically upload your statements & invoices into your accounting software - contact integrations@mmem.com.au                *** You can now pay your account online by Credit Card through your   online account - contact your local store to provide access\",\n    \"totalpaymentdue\": \"TOTAL PAYMENT DUE\",\n    \"totalpaymentdue$\": \"$1703.90\",\n    \"totpaymentnow\": \"TOTAL PAYMENT\",\n    \"totpaymentnow$\": \"$1703.90\"\n  }\n}"
+    },
+    {
+      "uuid": "efd35446-90d0-4944-b94f-799786095a2b",
+      "id": "62aj",
+      "name": "UNIBIS PRICES",
+      "documentation": "",
+      "value": "[\n  {{log (body 'soapenv:Envelope.soapenv:Body.urn:getWebPricing.urn:wsInList._cdata')}}\n  {{setVar 'wsInList' (jsonParse (body 'soapenv:Envelope.soapenv:Body.urn:getWebPricing.urn:wsInList._cdata'))}}\n  {{log (getVar 'wsInList')}}\n  {{setVar 'uomOptions' (array 'MTR' 'EA' 'PK' 'RO' 'PAC' 'PKT')}}\n  {{setVar 'qtyOptions' (array 100 50 10 1)}}\n  {{setVar 'fromOptions' (array 'contract' 'orpc' 'poprice')}}\n  {{setVar 'depOptions' (array 0 78)}}\n  {{setVar 'ratioOptions' (array 100 0.1)}}\n  \n  {{#each (getVar 'wsInList')}}\n  {{setVar 'uom' (oneOf (getVar 'uomOptions'))}}\n  {{setVar 'mult_qty' (oneOf (getVar 'qtyOptions'))}}\n  {{setVar 'ratioconv' (oneOf (getVar 'ratioOptions'))}}\n  {{setVar 'dperc' (oneOf (getVar 'depOptions'))}}\n  {{setVar 'uprice' (faker 'finance.amount' min=0.01 max=1000 dec=4)}}\n  {{setVar 'fprice' (toFixed (multiply (getVar 'uprice') (subtract 1 (divide (getVar 'dperc') 100))) 4)}}\n  {{setVar 'tprice' (toFixed (multiply (getVar 'uprice') (getVar 'mult_qty')) 4)}}\n  {{setVar 'alias_uprice' (toFixed (multiply (getVar 'uprice') (getVar 'mult_qty')) 4)}}\n  {{setVar 'alias_fprice' (toFixed (multiply (getVar 'fprice') (getVar 'mult_qty')) 4)}}\n  {{setVar 'aliasm_uprice' (toFixed (multiply (getVar 'uprice') (getVar 'mult_qty')) 4)}}\n  {{setVar 'aliasm_fprice' (toFixed (multiply (getVar 'fprice') (getVar 'mult_qty')) 4)}}\n  {{setVar 'aliasm_tprice' (toFixed (multiply (getVar 'tprice') (getVar 'mult_qty')) 4)}}\n  {\n    \"sku\": \"{{this.sku}}\",\n    \"error\": null,\n    \"from\": \"contract\",\n    \"uom\": \"{{getVar 'uom'}}\",\n    \"is_poa\": false,\n    \"iqty\": 1,\n    \"uprice\": {{ getVar 'uprice' }},\n    \"dperc\": {{ getVar 'dperc' }},\n    \"fprice\": {{ getVar 'fprice' }},\n    \"saqty\": 1,\n    \"sauom\": \"{{getVar 'uom'}}\",\n    \"saconv\": 1,\n    \"samult\": true,\n    \"prqty\": 0.01,\n    \"pruom\": \"{{getVar 'uom'}}\",\n    \"prconv\": 100,\n    \"prmult\": false,\n    \"breaks\": [\n      {{#each (array 100 200 300)}}\n      {\n        \"qty\": {{this}},\n        \"label\": \"{{this}}+\",\n        \"bdisc\": 1.5,\n        \"uprice\": {{faker 'finance.amount' min=0.01 max=100 precision=2}}\n      }{{#unless @last}},{{/unless}}\n      {{/each}}\n    ],\n    \"split\": null,\n    \"ordermult\": {\n      \"qty\": {{getVar 'mult_qty'}},\n      \"valid_qty\": false,\n      \"uprice\": {{ getVar 'uprice' }},\n      \"tprice\": {{ getVar 'tprice' }},\n      \"fprice\": {{ getVar 'fprice' }}\n    },\n    \"aliases\": [\n      {{#each (array 3 4 5)}}\n      {\n        \"sku\": \"{{faker 'string.numeric' length=9 }}\",\n        \"uom\": \"{{getVar 'uom'}}\",\n        \"conv\": {{getVar 'ratioconv'}},\n        \"mult\": false,\n        \"selected\": false,\n        \"ratio\": {{getVar 'ratioconv'}},\n        \"uprice\": {{ getVar 'alias_uprice' }},\n        \"fprice\": {{ getVar 'alias_fprice' }},\n        \"iuom\": {\n          \"qty\": {{getVar 'mult_qty'}},\n          \"uprice\": {{ getVar 'uprice' }},\n          \"fprice\": {{ getVar 'fprice' }}\n        },\n        \"breaks\": [],\n        \"split\": null,\n        \"ordermult\": {\n          \"qty\": 1,\n          \"valid_qty\": true,\n          \"uprice\": {{ getVar 'aliasm_uprice' }},\n          \"tprice\": {{ getVar 'aliasm_tprice' }},\n          \"fprice\": {{ getVar 'aliasm_fprice' }}\n        }\n      }{{#unless @last}},{{/unless}}\n      {{/each}}\n    ]\n  }{{#unless @last}},{{/unless}}\n  {{/each}}\n]"
+    }
+  ],
+  "callbacks": []
+}
