@@ -81,6 +81,13 @@
               "value": "2",
               "invert": false,
               "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "data",
+              "value": "",
+              "invert": false,
+              "operator": "null"
             }
           ],
           "rulesOperator": "AND",
